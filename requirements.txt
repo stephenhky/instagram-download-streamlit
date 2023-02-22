@@ -1,0 +1,3 @@
+instaloader
+streamlit
+python-dotenv
