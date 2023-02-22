@@ -31,8 +31,9 @@ if submitbutton:
         post = instaloader.Post.from_shortcode(L.context, shortcode)
         for node in post.get_sidecar_nodes():
             logging.info(node.display_url)
-            img = Image.open(urllib.open(node.display_url))
-            st.image(img)
+            img = Image.open(urllib.request.urlopen(node.display_url))
+            st.image(img, width=200)
+            st.components.v1.html('<img src={}>'.format(node.display_url))
     else:
         st.warning('Invalid URL!')
 
