@@ -16,7 +16,7 @@ username = os.getenv('USERNAME')
 
 
 L = instaloader.Instaloader()
-L.load_session_from_file(username)
+# L.load_session_from_file(username)
 
 posturl = st.text_input('URL')
 submitbutton = st.button('Submit')
