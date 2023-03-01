@@ -28,7 +28,14 @@ if submitbutton:
         shortcode = matcher.group(1)
         logging.info('shortcode: {}'.format(shortcode))
         post = instaloader.Post.from_shortcode(L.context, shortcode)
-        st.text('Profile: {} | {}'.format(post.profile, post.owner_profile.biography))
+        st.text('Profile: {}'.format(post.profile))
+        try:
+            profile_bib = post.owner_profile.biography
+            st.text('Profile Bibliography')
+            st.text(profile_bib)
+        except instaloader.exceptions.LoginRequiredException:
+            st.text('Owner profile not available: login required.')
+        st.text('Post caption:')
         st.text(post.caption)
         check_direct_url = True
         for node in post.get_sidecar_nodes():
