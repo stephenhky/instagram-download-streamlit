@@ -43,12 +43,26 @@ if submitbutton:
             logging.info(node.display_url)
             img = Image.open(urllib.request.urlopen(node.display_url))
             st.image(img, width=200)
-            st.components.v1.html('<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(node.display_url, node.display_url))
+            if node.is_video:
+                video_url = node.video_url
+                st.components.v1.html(
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(video_url, video_url))
+            else:
+                pic_url = node.display_url
+                st.components.v1.html(
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(pic_url, pic_url))
         if check_direct_url:
             logging.info(post.url)
             img = Image.open(urllib.request.urlopen(post.url))
             st.image(img, width=200)
-            st.components.v1.html('<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(post.url, post.url))
+            if post.is_video:
+                video_url = post.video_url
+                st.components.v1.html(
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(video_url, video_url))
+            else:
+                pic_url = post.url
+                st.components.v1.html(
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(pic_url, pic_url))
     else:
         st.warning('Invalid URL!')
 
