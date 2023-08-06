@@ -32,11 +32,11 @@ if submitbutton:
         try:
             profile_bib = post.owner_profile.biography
             st.text('Profile Bibliography')
-            st.text(profile_bib)
+            st.markdown(profile_bib)
         except instaloader.exceptions.LoginRequiredException:
             st.text('Owner profile not available: login required.')
         st.text('Post caption:')
-        st.text(post.caption)
+        st.markdown(post.caption)
 
         nodes = post.get_sidecar_nodes()
         check_direct_url = True
