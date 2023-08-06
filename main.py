@@ -32,13 +32,15 @@ if submitbutton:
         try:
             profile_bib = post.owner_profile.biography
             st.text('Profile Bibliography')
-            st.text(profile_bib)
+            st.markdown(profile_bib)
         except instaloader.exceptions.LoginRequiredException:
             st.text('Owner profile not available: login required.')
         st.text('Post caption:')
-        st.text(post.caption)
+        st.markdown(post.caption)
+
+        nodes = post.get_sidecar_nodes()
         check_direct_url = True
-        for node in post.get_sidecar_nodes():
+        for node in nodes:
             check_direct_url = False
             logging.info(node.display_url)
             img = Image.open(urllib.request.urlopen(node.display_url))
@@ -46,11 +48,19 @@ if submitbutton:
             if node.is_video:
                 video_url = node.video_url
                 st.components.v1.html(
-                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(video_url, video_url))
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(
+                        video_url, video_url
+                    )
+                )
             else:
                 pic_url = node.display_url
                 st.components.v1.html(
-                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(pic_url, pic_url))
+                    '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(
+                        pic_url, pic_url
+                    )
+                )
+                # st.download_button('Download', urllib.request.urlopen(pic_url).read(), os.path.basename(pic_url))
+
         if check_direct_url:
             logging.info(post.url)
             img = Image.open(urllib.request.urlopen(post.url))
