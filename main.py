@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv()
 username = os.getenv('USERNAME')
 
+st.set_page_config(page_title='Instagram Content Downloader')
 
 L = instaloader.Instaloader()
 # L.load_session_from_file(username)
