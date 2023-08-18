@@ -31,6 +31,11 @@ if submitbutton:
         post = instaloader.Post.from_shortcode(L.context, shortcode)
         st.text('Profile: {}'.format(post.profile))
         try:
+            profile_name = post.owner_profile.full_name
+            st.text('Name: {}'.format(profile_name))
+        except instaloader.exceptions.LoginRequiredException:
+            st.text('Owner profile name not available: login required.')
+        try:
             profile_bib = post.owner_profile.biography
             st.text('Profile Bibliography')
             st.markdown(profile_bib)
