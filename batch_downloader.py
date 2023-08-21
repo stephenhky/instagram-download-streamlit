@@ -35,7 +35,11 @@ if submitbutton:
         else:
             shortcode = matcher.group(1)
             logging.info('shortcode: {}'.format(shortcode))
-            post = instaloader.Post.from_shortcode(L.context, shortcode)
+            try:
+                post = instaloader.Post.from_shortcode(L.context, shortcode)
+            except instaloader.BadResponseException:
+                st.warning('Unable to retrieve!')
+                continue
             st.text('Profile: {}'.format(post.profile))
             try:
                 profile_name = post.owner_profile.full_name
