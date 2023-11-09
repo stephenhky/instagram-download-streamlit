@@ -48,7 +48,7 @@ if submitbutton:
                 st.text('Owner profile name not available: login required.')
             try:
                 profile_bib = post.owner_profile.biography
-                st.markdown('Profile Bibliography: {}'.format(profile_bib))
+                st.markdown('Profile Biography: {}'.format(profile_bib))
             except instaloader.exceptions.LoginRequiredException:
                 st.text('Owner profile not available: login required.')
             st.markdown('Post caption: {}'.format(post.caption))
