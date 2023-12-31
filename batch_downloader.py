@@ -3,6 +3,7 @@ import logging
 import os
 import re
 import urllib
+import traceback
 
 from PIL import Image
 import instaloader
@@ -40,6 +41,10 @@ if submitbutton:
             except instaloader.BadResponseException:
                 st.warning('Unable to retrieve!')
                 continue
+            except instaloader.ConnectionException:
+                extracebackstr = traceback.format_exc()
+                print(extracebackstr)
+                st.warning('Connection exception!')
             st.text('Profile: {}'.format(post.profile))
             try:
                 profile_name = post.owner_profile.full_name
