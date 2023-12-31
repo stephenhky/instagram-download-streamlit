@@ -32,18 +32,10 @@ def show_post(post):
 
         if node.is_video:
             video_url = node.video_url
-            st.components.v1.html(
-                '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(
-                    video_url, video_url
-                )
-            )
+            st.link_button('Click to Open Video', video_url)
         else:
             pic_url = node.display_url
-            st.components.v1.html(
-                '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(
-                    pic_url, pic_url
-                )
-            )
+            st.link_button('Click to Open Image', pic_url)
 
     if check_direct_url:
         logging.info(post.url)
@@ -51,10 +43,7 @@ def show_post(post):
         st.image(img, width=200)
         if post.is_video:
             video_url = post.video_url
-            st.components.v1.html(
-                '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open Video</a>'.format(
-                    video_url, video_url))
+            st.link_button('Click to Open Video', video_url)
         else:
             pic_url = post.url
-            st.components.v1.html(
-                '<a href="{}" target="_blank" rel="noreferrer noopener">Click to Open</a>'.format(pic_url, pic_url))
+            st.link_button('Click to Open Image', pic_url)
