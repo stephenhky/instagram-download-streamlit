@@ -22,10 +22,21 @@ L.load_session_from_file(username)
 profile = instaloader.Profile.from_username(L.context, username)
 
 
-top_k = st.number_input('Number of saved posts shown', min_value=0)
+top_k = st.number_input('Number of saved posts shown', min_value=1)
+min_k = st.number_input('Starting from...', min_value=0)
+
 if st.button('Retrieve'):
-    saved_posts_iterator = profile.get_saved_posts()
-    for i, post in enumerate(saved_posts_iterator):
-        if i >= top_k:
-            break
-        show_post(post)
+    if top_k <= min_k:
+        st.markdown('Warning: min_k < top_k please!')
+    else:
+        saved_posts_iterator = profile.get_saved_posts()
+        for i, post in enumerate(saved_posts_iterator):
+            if i < min_k:
+                continue
+            if i >= top_k:
+                break
+            instagram_url = 'https://www.instagram.com/p/{}'.format(post.shortcode)
+            st.subheader('Post {}: {}'.format(i, instagram_url))
+            logging.info('Post {}: {}'.format(i, instagram_url))
+            show_post(post)
+            st.divider()
