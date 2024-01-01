@@ -8,6 +8,7 @@ import instaloader
 
 
 def show_post(post):
+    st.markdown('Date: {}'.format(post.date_local.strftime('%Y-%m-%d %H:%M')))
     st.text('Profile: {}'.format(post.profile))
     try:
         profile_name = post.owner_profile.full_name
