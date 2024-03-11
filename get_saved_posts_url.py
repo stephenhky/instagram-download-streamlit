@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv()
 username = os.environ['USERNAME']
 
-
+st.set_page_config(page_title='Post Grabber and Downloader')
 
 L = instaloader.Instaloader()
 L.load_session_from_file(username)
