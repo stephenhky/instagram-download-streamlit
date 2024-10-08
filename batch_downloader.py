@@ -18,7 +18,8 @@ username = os.getenv('USERNAME')
 st.set_page_config(page_title='Batch Instagram Content Downloader')
 
 L = instaloader.Instaloader()
-L.load_session_from_file(username)
+if st.checkbox('Login') and (username is not None):
+    L.load_session_from_file(username)
 
 posturls = st.text_area('URLs (one per line)')
 submitbutton = st.button('Submit')
