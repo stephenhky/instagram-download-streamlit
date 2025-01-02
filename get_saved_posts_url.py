@@ -12,7 +12,7 @@ from utils.post import show_post
 logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
-username = os.environ['USERNAME']
+username = os.environ['IGUSERNAME']
 
 st.set_page_config(page_title='Post Grabber and Downloader')
 
