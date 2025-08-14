@@ -3,6 +3,7 @@ import logging
 import os
 import re
 import traceback
+import sys
 
 import instaloader
 from dotenv import load_dotenv
@@ -13,12 +14,13 @@ from utils.post import show_post
 logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
-username = os.getenv('USERNAME')
+username = os.getenv('IGUSERNAME')
 
 st.set_page_config(page_title='Batch Instagram Content Downloader')
 
 L = instaloader.Instaloader()
 if st.checkbox('Login') and (username is not None):
+    print(f"Username: {username}", file=sys.stderr)
     L.load_session_from_file(username)
 
 posturls = st.text_area('URLs (one per line)')

@@ -12,12 +12,12 @@ from utils.post import show_post
 logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
-username = os.getenv('USERNAME')
+username = os.getenv('IGUSERNAME')
 
 st.set_page_config(page_title='Instagram Content Downloader')
 
 L = instaloader.Instaloader()
-# L.load_session_from_file(username)
+L.load_session_from_file(username)
 
 posturl = st.text_input('URL')
 submitbutton = st.button('Submit')
