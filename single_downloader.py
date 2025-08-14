@@ -24,7 +24,7 @@ submitbutton = st.button('Submit')
 
 if submitbutton:
     # get shortcode
-    matcher = re.match('https://www.instagram.com/p/([A-Za-z0-9\_\-]+)', posturl)
+    matcher = re.match('https://www.instagram.com/p/([A-Za-z0-9_\-]+)', posturl)
     if matcher is not None:
         shortcode = matcher.group(1)
         logging.info('shortcode: {}'.format(shortcode))

@@ -28,7 +28,7 @@ if submitbutton:
     urls = posturls.split('\n')
     for postcounter, posturl in enumerate(urls):
         # get shortcode
-        matcher = re.match('https://www.instagram.com/p/([A-Za-z0-9\_\-]+)', posturl)
+        matcher = re.match(r'https://www.instagram.com/p/([A-Za-z0-9_\-]+)', posturl)
 
         st.subheader('Post {}: {}'.format(postcounter, posturl))
         logging.info('Post {}: {}'.format(postcounter, posturl))
